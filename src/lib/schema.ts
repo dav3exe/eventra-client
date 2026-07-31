@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { STATES , CATEGORIES} from '@/types/event-types';
 
 export const registerSchema = z.object({
   fullName: z
@@ -44,3 +45,21 @@ export const registerSchema = z.object({
     message: 'Invalid phone number',
   }),
 })
+
+
+export const eventSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  category: z.enum(CATEGORIES),
+  subcategory: z.string().optional(),
+  venue: z.string(),
+  city: z.string(), 
+  no:z.string()  ,         
+  state: z.enum(STATES),       
+  createdAt: z.string(),        
+  minPrice: z.number().min(0),    
+  coverImage: z.string(),
+  promotion: z.boolean().default(false),
+  trendingScore: z.number().default(0),
+});
+
